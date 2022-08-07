@@ -15,7 +15,7 @@ export default new Vuex.Store({
 
     addProductToCart(state, payload) {
       let product = payload.product.title;
-      let amount = payload.amount * payload.product.price;
+      let amount = Number((payload.amount * payload.product.price).toFixed(2));
       state.cart.push({product, amount});
     },
     addAmountToProduct(state, payload) {
@@ -54,6 +54,7 @@ export default new Vuex.Store({
        let cart = state.cart;
        let total = 0;
        for (let product of cart) {
+        console.log(typeof product.amount)
         total += product.amount
        }
        return total.toFixed(2);

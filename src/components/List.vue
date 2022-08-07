@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   props: {
@@ -28,26 +28,13 @@ export default {
     };
   },
   computed: {
-    // cardsWidth() {
-    //   let width = window.innerWidth;
-    //   let count = 1;
-    //   if (width > '840px') {
-    //     count = 3;
-    //   } else if ((width > '420px' && width < '840px')) {
-    //     count = 2;
-    //   }
-
-    //   return 100 / count;
-    // },
-
     ...mapGetters(['products'])
   },
   methods: {
-    ...mapActions(["addToCart"]),
-    // addToCart() {
-    //   this.$store.dispatch('addToCart');
-    //   this.amount = null;
-    // }
+    addToCart(params) {
+      this.$store.dispatch('addToCart', params);
+      this.amount = null;
+    }
   },
   created() {
     setInterval(() => {

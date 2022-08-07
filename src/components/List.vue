@@ -37,6 +37,7 @@ export default {
     }
   },
   created() {
+    // вызов функции получения продуктов из store и обновление списка каждые 2 секунды
     setInterval(() => {
       this.$store.dispatch('getProductsList')
     }, 2000)
@@ -46,47 +47,88 @@ export default {
 
 <style scoped> 
 
-
 @media screen and (max-width: 420px) {
-  .product-list {
-    width: 420px;
-    padding: 10px;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-  }
-  .card {
-    width: 350px;
-    
-  }
-}
-
-@media screen and(min-width:840px) {
   .product-list {
     padding: 10px;
     display: flex;
-    flex-wrap: wrap;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    
   }
-    .card {
-    /* display: inline-block; */
-    width: 30%;
+  .card {
+    display: inline-block;
+    width: 100%;
     border: 1px solid #908888;
     border-radius: 5px;
     text-align: center;
     padding: 10px;
-    box-sizing: border-box;
   }
+  
   .card-image {
-    width: 30%;
+    width: 100%;
   }
   button {
     padding: 5px;
     margin: 5px;
   }
 }
+
+  @media screen and (min-width: 421px) and (max-width: 839px) {
+  .product-list {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .card {
+    display: inline-block;
+    width: 45%;
+    border: 1px solid #908888;
+    border-radius: 5px;
+    text-align: center;
+    padding: 10px;
+  }
   
+  .card-image {
+    width: 100%;
+  }
+  button {
+    padding: 5px;
+    margin: 5px;
+  }
+  }
+  @media screen and (min-width: 840px) {
+  .product-list {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+  }
+  .card {
+    display: inline-block;
+    width: 30%;
+    border: 1px solid #908888;
+    border-radius: 5px;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .card-image {
+    width: 100%;
+  }
+  button {
+    padding: 5px;
+    margin: 5px;
+  }
+  }
+
+
+
+
+
 
 </style>

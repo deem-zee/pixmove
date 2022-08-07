@@ -3,6 +3,8 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 Vue.use(Vuex);
 
+// не используется как централизованное хранилище
+
 export default new Vuex.Store({
   state: {
   },

@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <Header :cart="cart" :currency="currency"></Header>
+    <Header :currency="currency" class="header"></Header>
     <List :currency="currency"/>
-    <Cart :cart="cart"/>
+    <Cart :currency="currency"/>
   </div>
 </template>
 
@@ -15,7 +15,6 @@ export default {
   name: 'App',
   data() {
     return {
-      cart: [],
       currency: 'VGTB',
     };
   },
@@ -27,12 +26,17 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+body {
+  padding: 0;
+  box-sizing: border-box;
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -40,5 +44,29 @@ export default {
   -moz-osx-font-smoothing: grayscale;
 
   color: #2c3e50;
+}
+
+@media screen and(max-width: 420px) {
+  /* body {
+  margin: 0 !important;
+  padding: 0;
+  box-sizing: border-box;
+} */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+  #app {
+    width: 420px;
+    display: flex;
+  }
+  .header {
+    margin: 0 auto;
+  }
+}
+
+@media screen and(min-width: 840px) {
+
 }
 </style>

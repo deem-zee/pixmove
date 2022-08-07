@@ -1,5 +1,14 @@
+<template>
+  <div class="header">
+    <h3>Товаров в корзине на: {{ getTotal }} {{ currency }}</h3>
+  </div>
+</template>
+
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
+  
   name: 'Header',
   props: {
     cart: Array,
@@ -13,15 +22,18 @@ export default {
       cartPrice: 0,
     };
   },
-  watch: {
-    cart(cart) {
-      let val = 0;
-      cart.forEach((item) => {
-        val += item.price * item.amount;
-      });
-      this.cartPrice = val;
-    },
-  },
+  computed: {
+   ...mapGetters(['getTotal']) 
+  }
+  // watch: {
+  //   cart(cart) {
+  //     let val = 0;
+  //     cart.forEach((item) => {
+  //       val += item.price * item.amount;
+  //     });
+  //     this.cartPrice = val;
+  //   },
+  // },
 }
 </script>
 
@@ -29,11 +41,8 @@ export default {
   .header {
     padding: 10px;
     background: #e5e5e5;
+    margin: 0 auto;
   }
 </style>
 
-<template>
-  <div class="header">
-    <h3>Товаров в корзине на: {{ cartPrice }} {{ currency }}</h3>
-  </div>
-</template>
+

@@ -1,24 +1,24 @@
 <template>
   <div class="cart-list">
-    <div v-for="item in spisok_dlya_rendera">
-      {{ item }}
+    <div v-for="item in cart" :key="item.product">
+      {{ item.product }}: {{ item.amount }} {{currency}}
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   props: {
-    cart: Array,
+    currency: String
   },
   computed: {
-      spisok_dlya_rendera() {
-          return this.cart.reverse();
-      },
+      ...mapGetters(['cart'])
   },
 };
 </script>
 
-<style>
+<style scoped>
 
 </style>

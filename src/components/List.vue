@@ -1,16 +1,15 @@
 <template>
   <div class="product-list">
-    <div class="card" v-for="product in products" :key="product.id">
+    <div class="card" v-for="(product,index) in products" :key="index">
       <p class="card-title">{{ product.title }}</p>
       <img class="card-image" :src="product.image" alt="">
       <p class="card-price">Цена: {{ product.price }} {{ currency }}</p>
-
+        {{index}}{{products.length}}
       <div>
-        <input type="number" v-model="amount">
+        <input type="number" v-model="form.amount[index]">
         <span>кг</span>
       </div>
-
-      <button @click="addToCart({product: product, amount: amount})"> В корзину </button>
+      <button @click="addToCart({product: product, amount: form.amount[index]})"> В корзину </button>
     </div>
   </div>
 </template>
@@ -24,22 +23,24 @@ export default {
   },
   data() {
     return {
-      amount: null,
+      form: {
+        amount: [],
+      }
     };
   },
   computed: {
-    ...mapGetters(['products'])
+    ...mapGetters(['products']),
   },
   methods: {
     addToCart(params) {
       this.$store.dispatch('addToCart', params);
-      this.amount = null;
+      this.form.amount = [];
     }
   },
   created() {
     // вызов функции получения продуктов из store и обновление списка каждые 2 секунды
     setInterval(() => {
-      this.$store.dispatch('getProductsList')
+    this.$store.dispatch('getProductsList');
     }, 2000)
   },
 };

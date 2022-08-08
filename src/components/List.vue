@@ -4,12 +4,12 @@
       <p class="card-title">{{ product.title }}</p>
       <img class="card-image" :src="product.image" alt="">
       <p class="card-price">Цена: {{ product.price }} {{ currency }}</p>
-        {{index}}{{products.length}}
+
       <div>
-        <input type="number" v-model="form.amount[index]">
+        <input type="number" v-model="amount[index]">
         <span>кг</span>
       </div>
-      <button @click="addToCart({product: product, amount: form.amount[index]})"> В корзину </button>
+      <button @click="addToCart({product: product, amount: amount[index]})"> В корзину </button>
     </div>
   </div>
 </template>
@@ -23,9 +23,7 @@ export default {
   },
   data() {
     return {
-      form: {
-        amount: [],
-      }
+      amount: []
     };
   },
   computed: {
@@ -34,11 +32,10 @@ export default {
   methods: {
     addToCart(params) {
       this.$store.dispatch('addToCart', params);
-      this.form.amount = [];
+      this.amount = [];
     }
   },
   created() {
-    // вызов функции получения продуктов из store и обновление списка каждые 2 секунды
     setInterval(() => {
     this.$store.dispatch('getProductsList');
     }, 2000)

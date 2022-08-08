@@ -1,6 +1,6 @@
 <template>
   <div class="cart-list">
-    <div v-for="item in cart" :key="item.product">
+    <div v-for="item in getCart" :key="item.product">
       {{ item.product }}: {{ item.amount }} {{currency}}
     </div>
   </div>
@@ -14,7 +14,7 @@ export default {
     currency: String
   },
   computed: {
-      ...mapGetters(['cart'])
+      ...mapGetters(['getCart'])
   },
 };
 </script>

@@ -16,25 +16,30 @@ export default new Vuex.Store({
     // изменение состояния коризны (добавление товара)
     addProductToCart(state, payload) {
       let product = payload.product.title;
-      let amount = 0;
-      if (Boolean(payload.amount) === false) {
-        amount = 0;
-      } else {
-        amount = Number((payload.amount * payload.product.price).toFixed(2));
-        state.cart.push({product, amount});
-      }
-    },
-    // изменение цены от общего количества товара, 
-    addAmountToProduct(state, payload) {
-      let product = state.cart.find(item => item.product === payload.product.title);
+      let price = payload.product.price;
       let amount = payload.amount;
-      if(Boolean(amount) === false) {
-        amount = 0;
-      } else {
-        product.amount = Number(product.amount) + Number(amount) * payload.product.price;
-      }
+      state.cart.push({product, amount, price});
+      // 
+      // let amount = 0;
+      // if (Boolean(payload.amount) === false) {
+      //   amount = 0;
+      // } else {
+      //   amount = Number((payload.amount * payload.product.price).toFixed(2));
+      //   state.cart.push({product, amount});
+      // }
+    },
+
+    // изменение цены от общего количества товара, 
+    // addAmountToProduct(state, payload) {
+    //   let product = state.cart.find(item => item.product === payload.product.title);
+    //   let amount = payload.amount;
+    //   if(Boolean(amount) === false) {
+    //     amount = 0;
+    //   } else {
+    //     product.amount = Number(product.amount) + Number(amount) * payload.product.price;
+    //   }
       
-    }
+    // }
   },
   actions: {
     // получение списка товаров из удаленного репозитория
@@ -42,16 +47,19 @@ export default new Vuex.Store({
         let result = await api.getProductsList();
         ctx.commit("setProductsList", result);
     },
-    // добавление товара в корзину, если данного товара еще не было в корзине, если товар уже есть в корзине, добавляется только количество
+    // добавление товара в корзину
     addToCart(context, payload) {
-      let cartItem = payload.product;
-      let amount = payload.amount;
-      if (context.state.cart.find(item => (item.product === cartItem.title))) {
-        context.commit('addAmountToProduct', payload)
-      } else {
+      // добавление товара в корзину, если данного товара еще не было в корзине, если товар уже есть в корзине, добавляется только количество
+      // let cartItem = payload.product;
+      // let amount = payload.amount;
+      // if (context.state.cart.find(item => (item.product === cartItem.title))) {
+      //   context.commit('addAmountToProduct', payload)
+      // } else {
+      //   context.commit('addProductToCart', payload)
+      // }
+      if(payload.amount > 0) {
         context.commit('addProductToCart', payload)
-      }
-      
+      } 
     }
   },
   getters: {
@@ -63,7 +71,7 @@ export default new Vuex.Store({
     getCart (state) {
       let reversed = [];
       for(let item of state.cart) {
-        reversed.push({product: item.product, amount: item.amount});
+        reversed.push({product: item.product, amount: item.amount, price: item.price});
       }
       return reversed.reverse();
     },
@@ -72,7 +80,7 @@ export default new Vuex.Store({
        let cart = state.cart;
        let total = 0;
        for (let product of cart) {
-        total += product.amount
+        total += product.amount * product.price;
        }
        return total.toFixed(2);
     }

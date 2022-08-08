@@ -45,7 +45,24 @@ export default {
 
 <style scoped> 
 
+
 @media screen and (max-width: 420px) {
+  .card {
+    width: 100%;
+  }
+}
+
+  @media screen and (min-width: 421px) and (max-width: 839px) {
+  .card {
+    width: 45%;
+  }
+  
+  }
+  @media screen and (min-width: 840px) {
+  .card {
+    width: 30%;
+  }
+  }
   .product-list {
     padding: 10px;
     display: flex;
@@ -56,7 +73,6 @@ export default {
   }
   .card {
     display: inline-block;
-    width: 100%;
     border: 1px solid #908888;
     border-radius: 5px;
     text-align: center;
@@ -70,60 +86,6 @@ export default {
     padding: 5px;
     margin: 5px;
   }
-}
-
-  @media screen and (min-width: 421px) and (max-width: 839px) {
-  .product-list {
-    padding: 10px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-  .card {
-    display: inline-block;
-    width: 45%;
-    border: 1px solid #908888;
-    border-radius: 5px;
-    text-align: center;
-    padding: 10px;
-  }
-  
-  .card-image {
-    width: 100%;
-  }
-  button {
-    padding: 5px;
-    margin: 5px;
-  }
-  }
-  @media screen and (min-width: 840px) {
-  .product-list {
-    padding: 10px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-
-  }
-  .card {
-    display: inline-block;
-    width: 30%;
-    border: 1px solid #908888;
-    border-radius: 5px;
-    text-align: center;
-    padding: 10px;
-  }
-  
-  .card-image {
-    width: 100%;
-  }
-  button {
-    padding: 5px;
-    margin: 5px;
-  }
-  }
-
 
 
 

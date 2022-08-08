@@ -1,6 +1,7 @@
 <template>
   <div class="product-list">
-    <div class="card" v-for="product in products" :style="{width: cardsWidth + '%'}">
+    <div class="card" v-for="product in products" :style="{width: cardsWidth + '%'}"> <!-- спецификация рекомендует добавлять атрибут key в v-for. В данном случае,
+    этот атрибут может быть использован для определения принадлежности конкретного input  -->
       <p class="card-title">{{ product.title }}</p>
       <img class="card-image" :src="product.image" alt="">
       <p class="card-price">Цена: {{ product.price }} {{ currency }}</p>
@@ -29,16 +30,25 @@ export default {
     cardsWidth() {
       let width = window.innerWidth;
       let count = 1;
-      if (width > '840px') {
+        if (width > '840px') {
         count = 3;
       } else if ((width > '420px' && width < '840px')) {
         count = 2;
       }
 
+      // предлагаемые изменения(или переписать в медиазапросы):
+      // if (width > 840) {
+      //   count = 3;
+      // } else if (width > 420 && width < 840) {
+      //   count = 2;
+      // } 
+      
+      
       return 100 / count;
     },
   },
   methods: {
+    // запрос на получение списка товаров идет каждую секунду вместо каждых 2 секунд по ТЗ
     startPricesMonitoring() {
       setInterval(this.getList, 1000);
     },
@@ -56,6 +66,7 @@ export default {
         title: product.title,
       };
       this.$parent.cart.push(data);
+      // после добавления товара в корзину не в поле инпута остается введенное количество товара
     },
   },
   created() {
@@ -65,6 +76,8 @@ export default {
 </script>
 
 <style>
+/* style  без scoped. при использовании scoped стили родительского компонента не будут оказывать влияние на дочерние элементы компонента, 
+кроме root-элемента дочернего компонента  */ 
   .product-list {
     padding: 10px;
   }

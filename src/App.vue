@@ -7,6 +7,9 @@
 </template>
 
 <script>
+// так как в проекте используется vuex, 
+// его удобнее использовать как единый источник истины, вместо того, 
+// чтобы передавать в из родительского компонента в дочерний и обратно изменение состояния  
 import Header from './components/Header.vue';
 import List from './components/List.vue';
 import Cart from './components/Cart.vue';

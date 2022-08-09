@@ -1,8 +1,6 @@
 <template>
   <div class="cart-list">
-    <div v-for="item in getCart" :key="item.product">
-      <!-- {{ item.product }}: {{ item.amount }} {{currency}}
-       -->
+    <div v-for="(item, index) in getCart" :key="index">
        {{item}}
     </div>
   </div>

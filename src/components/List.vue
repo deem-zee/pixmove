@@ -84,12 +84,5 @@ export default {
   .card {
     width: 33.3%;
   }
-
   }
-
-
-
-
-
-
 </style>

@@ -13,33 +13,14 @@ export default new Vuex.Store({
     setProductsList(state, data) {
       state.products = data
     },
-    // изменение состояния коризны (добавление товара)
+    // изменение состояния корзины (добавление товара). можно сделать объединение количества продукта при повторном добавлении одинаковых продуктов в корзину,
+    // для наглядности работы инверсии корзины оставлена вресия без объединения количества товара
     addProductToCart(state, payload) {
       let product = payload.product.title;
       let price = payload.product.price;
       let amount = payload.amount;
       state.cart.push({product, amount, price});
-      // 
-      // let amount = 0;
-      // if (Boolean(payload.amount) === false) {
-      //   amount = 0;
-      // } else {
-      //   amount = Number((payload.amount * payload.product.price).toFixed(2));
-      //   state.cart.push({product, amount});
-      // }
     },
-
-    // изменение цены от общего количества товара, 
-    // addAmountToProduct(state, payload) {
-    //   let product = state.cart.find(item => item.product === payload.product.title);
-    //   let amount = payload.amount;
-    //   if(Boolean(amount) === false) {
-    //     amount = 0;
-    //   } else {
-    //     product.amount = Number(product.amount) + Number(amount) * payload.product.price;
-    //   }
-      
-    // }
   },
   actions: {
     // получение списка товаров из удаленного репозитория
@@ -49,14 +30,6 @@ export default new Vuex.Store({
     },
     // добавление товара в корзину
     addToCart(context, payload) {
-      // добавление товара в корзину, если данного товара еще не было в корзине, если товар уже есть в корзине, добавляется только количество
-      // let cartItem = payload.product;
-      // let amount = payload.amount;
-      // if (context.state.cart.find(item => (item.product === cartItem.title))) {
-      //   context.commit('addAmountToProduct', payload)
-      // } else {
-      //   context.commit('addProductToCart', payload)
-      // }
       if(payload.amount > 0) {
         context.commit('addProductToCart', payload)
       } 

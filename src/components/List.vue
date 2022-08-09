@@ -39,10 +39,10 @@ export default {
       // предлагаемые изменения(или переписать в медиазапросы):
       // if (width > 840) {
       //   count = 3;
-      // } else if (width > 420 && width < 840) {
-      //   count = 2;
       // } 
-      
+      // else if (width > 420 && width < 840) {
+      //   count = 2;
+      // }
       
       return 100 / count;
     },

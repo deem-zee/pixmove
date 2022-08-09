@@ -1,6 +1,6 @@
 <template>
   <div class="product-list">
-    <div class="card" v-for="(product,index) in products" :key="index">
+    <div class="card" v-for="(product,index) in products" :key="index" >
       <p class="card-title">{{ product.title }}</p>
       <img class="card-image" :src="product.image" alt="">
       <p class="card-price">Цена: {{ product.price }} {{ currency }}</p>
@@ -45,31 +45,11 @@ export default {
 
 <style scoped> 
 
-
-@media screen and (max-width: 420px) {
-  .card {
-    width: 100%;
-  }
-}
-
-  @media screen and (min-width: 421px) and (max-width: 839px) {
-  .card {
-    width: 45%;
-  }
-  
-  }
-  @media screen and (min-width: 840px) {
-  .card {
-    width: 30%;
-  }
-  }
   .product-list {
     padding: 10px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
-    
   }
   .card {
     display: inline-block;
@@ -77,7 +57,9 @@ export default {
     border-radius: 5px;
     text-align: center;
     padding: 10px;
+    box-sizing: border-box;
   }
+  
   
   .card-image {
     width: 100%;
@@ -86,6 +68,25 @@ export default {
     padding: 5px;
     margin: 5px;
   }
+  @media screen and (max-width: 420px) {
+    .card {
+      width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 421px) and (max-width: 839px) {
+  .card {
+    width: 50%;
+  }
+  
+  }
+  @media screen and (min-width: 840px) {
+  .card {
+    width: 33.3%;
+  }
+
+  }
+
 
 
 
